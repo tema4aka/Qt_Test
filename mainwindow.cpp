@@ -7,22 +7,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent),
       inventory_model(new InventoryModel),
       inventory_view(new InventoryView),
       item_label_apple(new ItemLabel),
-      item_label_pear(new ItemLabel),
-      item_label_plum(new ItemLabel),
-      item_label_orange(new ItemLabel),
       push_button(new QPushButton("Главное меню")),
       menu(Q_NULLPTR)
   {
       inventory_view->setModel(inventory_model);
 
-      crate_interface();
+      create_interface();
       create_connections();
 
       item_label_apple->set_key(1);
-      item_label_pear->set_key(2);
-      item_label_plum->set_key(3);
-      item_label_orange->set_key(4);
-
       resize(window_metrics::int_default_width, window_metrics::int_default_height);
   }
 MainWindow::~MainWindow()
@@ -30,7 +23,7 @@ MainWindow::~MainWindow()
     delete inventory_model;
 }
 
-void MainWindow::crate_interface()
+void MainWindow::create_interface()
 {
     QGridLayout *grid_layout = new QGridLayout(this);
 
@@ -46,12 +39,6 @@ void MainWindow::crate_interface()
     grid_layout_source->setSpacing(0);
 
     grid_layout_source->addWidget(item_label_apple, 0, 0, 1, 1, Qt::AlignCenter);
-
-    grid_layout_source->addWidget(item_label_pear, 0, 1, 1, 1, Qt::AlignCenter);
-
-    grid_layout_source->addWidget(item_label_plum, 1, 0, 1, 1, Qt::AlignCenter);
-
-    grid_layout_source->addWidget(item_label_orange, 1, 1, 1, 1, Qt::AlignCenter);
 
     grid_layout->addLayout(grid_layout_source, 0, 1, 1, 1);
 

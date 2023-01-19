@@ -6,7 +6,6 @@
 #include <QTemporaryFile>
 
   //Менеджер управления подкючения к базе данных.
-
 class DataBaseManager
 {
 public:
@@ -22,6 +21,7 @@ private:
     //Всегда можно будет создать только один объект
 
     DataBaseManager();
+    //Запрет копирования и перемещения
     Q_DISABLE_COPY(DataBaseManager)
     DataBaseManager(DataBaseManager&&) = delete;
     DataBaseManager& operator=(DataBaseManager&&) = delete;

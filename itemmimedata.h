@@ -3,6 +3,8 @@
 
 #include <QMimeData>
 
+//Класс предмета используется так как
+//данные Drag&Drop передаются в вмде Mime данных
 class ItemMimeData : public QMimeData
 {
 public:
@@ -24,7 +26,7 @@ public:
 
 protected:
 
-    //Тип итемки и ее количество
+    //Тип предмета и ее количество
     int int_type;
     int int_count;
 

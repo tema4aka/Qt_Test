@@ -5,19 +5,18 @@
 
 InventoryDelegate::InventoryDelegate(QObject *parent): QStyledItemDelegate(parent) {}
 
+
 void InventoryDelegate::paint(QPainter *painter, const QStyleOptionViewItem &option,
                               const QModelIndex &index) const
 {
-
-     //отрисовка заливки выделенного элемента
+    //Отрисовка заливки выделенного элемента
     if(option.state & QStyle::State_Selected)
     {
         painter->fillRect(option.rect, QBrush(Qt::lightGray));
     }
 
-      //Отрисовка ячейки если количество объектов в отлично от нуля
-      //Для отрисовки неактивной иконки объекта проверяется состояние родителя делегата
-
+    //Отрисовка ячейки если количество объектов в отлично от нуля
+    //Для отрисовки неактивной иконки объекта проверяется состояние родителя делегата
     if(index.data(inventory_role::int_count_role).canConvert(QMetaType::Int) &&
             index.data(Qt::DecorationRole).canConvert(QMetaType::QString))
     {

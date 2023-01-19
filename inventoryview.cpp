@@ -92,7 +92,7 @@ void InventoryView::dragMoveEvent(QDragMoveEvent *event)
     if(event->mimeData()->hasFormat(QString("application/item")))
         {
         //Если происходит  перетаскивание целевой ячейки в непустую
-        //ячеку с наличием в ней объекта типа отличного от целевого
+        //ячеку с наличием в ней предмета типа отличного от целевого
         //игнорируем дропинг
         if(int_current_item_type != -1 && model_index_source_for_drag.isValid()
            && int_current_item_type != model_index_source_for_drag.data(inventory_role::int_type_role).toInt())
@@ -100,7 +100,7 @@ void InventoryView::dragMoveEvent(QDragMoveEvent *event)
             event->ignore();
             return;
         }
-        //Аналогично если источником итемки является внешний виджет
+        //Аналогично если источником предмета является внешний виджет
         const ItemMimeData *item_mime_data = static_cast<const ItemMimeData*>(event->mimeData());
 
         if(item_mime_data && (int_current_item_type != -1)
@@ -134,17 +134,13 @@ void InventoryView::dropEvent(QDropEvent *event)
     {
         return;
     }
-
     //Получить тип элемента в ячейке и его количество
-
     int int_current_item_type = model_index.data(inventory_role::int_type_role).toInt();
-
     int int_current_item_count = model_index.data(inventory_role::int_count_role).toInt();
 
       //Двойное условие:
       //Внешнее - если предмет в ячейке и сбрасываемый предмет идентичны
       //Внутреннее - источник MIME данных (внешний объект или текущий виджет)
-
     if(int_current_item_type == int_item_key )
     {
         if(event->source() != this)

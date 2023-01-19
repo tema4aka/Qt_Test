@@ -25,17 +25,18 @@ QSqlDatabase DataBaseManager::get_data_base()
 bool DataBaseManager::connect_data_base()
 {
     bool bool_success = false;
-    if(!QFileInfo::exists(QString("E:/Reestr/inventory.db"))) //Проверка существования файла БД
+    //Проверка существования файла БД
+    if(!QFileInfo::exists(QString("../TestTask/inventory.db")))
     {
         QMessageBox::critical(Q_NULLPTR, QString("Сообщение об ошибке!"),
         QString("Не обнаружена база данных!"));
         return bool_success;
     }
 
-    // Подключение и настройка БД, помещение наименованиz БД в поле класса
-    QSqlDatabase sql_data_base = QSqlDatabase::addDatabase(QString("QSQLITE"), QString("E:/Reestr/inventory.db"));
+    // Подключение и настройка БД, помещение наименования БД в поле класса
+    QSqlDatabase sql_data_base = QSqlDatabase::addDatabase(QString("QSQLITE"), QString("../TestTask/inventory.db"));
     sql_data_base.setConnectOptions("QSQLITE_OPEN_URI");
-    sql_data_base.setDatabaseName(QString("E:/Reestr/inventory.db"));
+    sql_data_base.setDatabaseName(QString("../TestTask/inventory.db"));
 
     if(!sql_data_base.open())
     {
@@ -45,7 +46,7 @@ bool DataBaseManager::connect_data_base()
     }
 
     string_data_base_name = sql_data_base.databaseName();
-    QSqlQuery sql_query(sql_data_base);
+    QSqlQuery sql_query(sql_data_base);    
 
     bool_success = sql_query.exec(QString("PRAGMA foreign_keys = on"));
     if(!sql_query.isActive())

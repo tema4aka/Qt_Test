@@ -10,7 +10,6 @@ int InventoryModel::rowCount(const QModelIndex &parent) const
     Q_UNUSED(parent);
 
     int int_count_rows = inventory.count_rows();
-
     return int_count_rows;
 }
 
@@ -19,7 +18,6 @@ int InventoryModel::columnCount(const QModelIndex &parent) const
     Q_UNUSED(parent);
 
     int int_count_columns = inventory.count_columns();
-
     return int_count_columns;
 }
 
@@ -31,7 +29,8 @@ QVariant InventoryModel::data(const QModelIndex &index, int role) const
         return variant_result;
     }
 
-    switch (role) {
+    switch (role)
+    {
     case Qt::DecorationRole:
     {
         variant_result = inventory.get_image_for_cell(index.row(), index.column());
@@ -47,7 +46,6 @@ QVariant InventoryModel::data(const QModelIndex &index, int role) const
     }
         break;
     }
-
     return variant_result;
 }
 

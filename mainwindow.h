@@ -25,9 +25,13 @@ public:
 
     virtual ~MainWindow();
 protected:
+    //Метод для создания QGridLayouts и помещения виджетов в layouts
+    void create_interface();
 
-    void crate_interface();
+    //Метод для создания связей между slots и signals (connect:)
     void create_connections();
+
+    //Метод обновления окна
     virtual void timerEvent(QTimerEvent *event) Q_DECL_OVERRIDE;
 
 public slots:
@@ -42,9 +46,6 @@ private:
     InventoryModel *inventory_model;
     InventoryView *inventory_view;
     ItemLabel *item_label_apple;
-    ItemLabel *item_label_pear;
-    ItemLabel *item_label_plum;
-    ItemLabel *item_label_orange;
 
     QPushButton *push_button;
 

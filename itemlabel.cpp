@@ -17,6 +17,7 @@ const int item_width  = 128;
 
 ItemLabel::ItemLabel(QWidget *parent) : QLabel(parent), int_item_key(), point_drag_position()
 {
+    //Устанавка рахмера отображения предмета в QTableView
     setFixedSize(QSize(test::item_width, test::item_height));
 }
 
@@ -96,5 +97,6 @@ void ItemLabel::set_key(int key)
 {
     int_item_key = key;
 
+    //Смена изображения для объекта
     setPixmap(QPixmap(get_image_for_key()));
 }
